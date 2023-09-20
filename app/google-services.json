@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "875288046663",
+    "firebase_url": "https://digital-farm-inspection-app-default-rtdb.firebaseio.com",
+    "project_id": "digital-farm-inspection-app",
+    "storage_bucket": "digital-farm-inspection-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:875288046663:android:b8a9aa300f761412d4d562",
+        "android_client_info": {
+          "package_name": "com.example.digitalfarminspectionapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "875288046663-td9qvnlvh0s6k1va9oqpmjg2nbbg40gv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsu40HH5EhFOOId0HWe7Y-46NUtxyvX8E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "875288046663-td9qvnlvh0s6k1va9oqpmjg2nbbg40gv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
