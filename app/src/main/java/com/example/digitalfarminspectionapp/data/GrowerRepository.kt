@@ -7,6 +7,8 @@ import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.navigation.NavHostController
 import com.example.digitalfarminspectionapp.models.Grower
+import com.example.digitalfarminspectionapp.navigation.ROUTE_GROWER_DETAILS
+import com.example.digitalfarminspectionapp.navigation.ROUTE_UPDATE_GROWER
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -24,7 +26,7 @@ class GrowerRepository(var navController: NavHostController, var context: Contex
         growers = mutableListOf<Grower>() as ArrayList<Grower>
     }
 
-    fun saveGrower(growerName:String,growerNumber:String,growerId:String,phoneNumber:String,numberofBushes:String,area:String) {
+    fun saveGrower(growerName:String,growerNumber:String,growerId:String,phoneNumber:String,numberofBushes:String,area:String, successSave:MutableState<Boolean>) {
         var id = System.currentTimeMillis().toString()
         var growerData = Grower(growerName,growerNumber,growerId,phoneNumber,numberofBushes,area,id)
         var growerRef = FirebaseDatabase.getInstance().getReference()
@@ -34,6 +36,7 @@ class GrowerRepository(var navController: NavHostController, var context: Contex
             progress.dismiss()
             if (it.isSuccessful){
                 Toast.makeText(context, "Saving successful", Toast.LENGTH_SHORT).show()
+                successSave.value = true
             }else{
                 Toast.makeText(context,"Error: ${it.exception!!.message}", Toast.LENGTH_SHORT).show()
             }
@@ -73,6 +76,11 @@ class GrowerRepository(var navController: NavHostController, var context: Contex
             progress.dismiss()
             if (it.isSuccessful){
                 Toast.makeText(context, "You have successfully updated grower", Toast.LENGTH_SHORT).show()
+                navController.navigate(ROUTE_GROWER_DETAILS){
+                    popUpTo(ROUTE_UPDATE_GROWER){
+                        inclusive=true
+                    }
+                }
             }else{
                 Toast.makeText(context, it.exception!!.message, Toast.LENGTH_SHORT).show()
             }

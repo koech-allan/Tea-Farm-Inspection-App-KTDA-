@@ -53,7 +53,7 @@ fun GrowerdetailsScreen(navController: NavHostController) {
                     horizontalAlignment = Alignment.CenterHorizontally) {
 
                     Text(
-                        text = "ALL GROWERS",
+                        text = "All Growers",
                         color = Color.Red,
                         fontSize = 30.sp,
                         fontWeight = FontWeight.Bold,
@@ -131,21 +131,21 @@ fun GrowerItem(
                     .padding(top = 16.dp),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                Button(colors = ButtonDefaults.buttonColors(Color.Yellow),
+                Button(colors = ButtonDefaults.buttonColors(Color.DarkGray),
                     onClick = {
                         navController.navigate(ROUTE_UPDATE_GROWER + "/$id")
                     }
 
                 ) {
-                    Text(text = "Update",color = Color.Black)
+                    Text(text = "Update",color = Color.Yellow)
                 }
 
-                Button(colors = ButtonDefaults.buttonColors(Color.Yellow),
+                Button(colors = ButtonDefaults.buttonColors(Color.DarkGray),
                     onClick = {
                         growerRepository.deleteGrower(id)
                     }
                 ) {
-                    Text(text = "Delete",color = Color.Black)
+                    Text(text = "Delete",color = Color.Yellow)
                 }
             }
         }

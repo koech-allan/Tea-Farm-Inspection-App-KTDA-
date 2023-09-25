@@ -38,7 +38,8 @@ import com.example.digitalfarminspectionapp.ui.theme.DigitalFarmInspectionAppThe
 @Composable
 fun AddGrowerScreen(navController: NavHostController) {
     Column(
-        modifier = Modifier.fillMaxSize().background(Color.LightGray),
+        modifier = Modifier
+            .fillMaxSize(),
 //            .paint(
             // Replace with your image id
 //            painterResource(id = R.drawable.tea5),
@@ -47,7 +48,8 @@ fun AddGrowerScreen(navController: NavHostController) {
     ) {
         var context = LocalContext.current
         Column(modifier = Modifier
-            .fillMaxWidth().background(Color.Green),
+            .fillMaxWidth()
+            .background(Color.Green),
             horizontalAlignment = Alignment.CenterHorizontally) {
 
             Text(
@@ -67,6 +69,15 @@ fun AddGrowerScreen(navController: NavHostController) {
         var phoneNumber by remember { mutableStateOf(TextFieldValue("")) }
         var numberofBushes by remember { mutableStateOf(TextFieldValue("")) }
         var area by remember { mutableStateOf(TextFieldValue("")) }
+        var successSave = remember { mutableStateOf(false) }
+        if (successSave.value){
+            growerName = TextFieldValue("")
+            growerNumber = TextFieldValue("")
+            growerId = TextFieldValue("")
+            phoneNumber = TextFieldValue("")
+            numberofBushes = TextFieldValue("")
+            area = TextFieldValue("")
+        }
 
         OutlinedTextField(
             value = growerName,
@@ -85,7 +96,7 @@ fun AddGrowerScreen(navController: NavHostController) {
             onValueChange = {
                 growerNumber = it
             },
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text)
         )
 
         Spacer(modifier = Modifier.height(20.dp))
@@ -125,11 +136,12 @@ fun AddGrowerScreen(navController: NavHostController) {
 
         OutlinedTextField(
             value = area,
-            label = { Text(text = "Enter Land size**") },
+            label = { Text(text = "Enter Land size(Acres)**") },
             onValueChange = {
                 area = it
             },
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+
         )
 
 
@@ -139,7 +151,7 @@ fun AddGrowerScreen(navController: NavHostController) {
 //            Write the save logic here
             var growerRepository = GrowerRepository(navController, context)
             growerRepository.saveGrower(growerName.text.trim(), growerNumber.text.trim(),
-                growerId.text.trim(),phoneNumber.text.trim(),numberofBushes.text.trim(),area.text.trim())
+                growerId.text.trim(),phoneNumber.text.trim(),numberofBushes.text.trim(),area.text.trim(), successSave)
 
         }, colors = ButtonDefaults.buttonColors(Color.DarkGray)) {
             Text(text = "Save")

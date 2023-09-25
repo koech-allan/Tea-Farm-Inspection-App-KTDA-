@@ -69,12 +69,13 @@ fun HomeScreen(navController: NavHostController) {
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(8.dp),
+                .padding(10.dp),
+
 
         ) {
             Column(
                 modifier = Modifier
-                    .fillMaxWidth().padding(12.dp),
+                    .fillMaxWidth().padding(15.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Image(
@@ -166,11 +167,12 @@ fun HomeScreen(navController: NavHostController) {
                         navController.navigate(ROUTE_GROWER_DETAILS)
                     },
                     modifier = Modifier.height(45.dp).width(170.dp),
-                    shape =CircleShape
+                    shape =CircleShape,
+                    colors = ButtonDefaults.buttonColors(Color.Green)
                 ) {
                     Text(
                         text = "Grower Details",
-                        color = Color.Yellow,
+                        color = Color.Black,
                         fontSize = 15.sp,
 
                     )

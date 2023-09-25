@@ -1,10 +1,13 @@
 package com.example.digitalfarminspectionapp.ui.theme.pages.growers
 
 import android.content.res.Configuration
+import android.util.Log
 import android.widget.Toast
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
@@ -24,8 +27,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
-import androidx.compose.ui.text.input.TextFieldValue
-import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -47,48 +48,58 @@ fun UpdateGrowerScreen(navController: NavHostController,id:String) {
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
         var context = LocalContext.current
-        var name by remember { mutableStateOf("") }
-        var gnumber by remember { mutableStateOf("") }
-        var idnumber by remember { mutableStateOf("") }
-        var phone by remember { mutableStateOf("") }
-        var bushes by remember { mutableStateOf("") }
-        var garea by remember { mutableStateOf("") }
+        Column(modifier = Modifier
+            .fillMaxWidth().background(Color.Green),
+            horizontalAlignment = Alignment.CenterHorizontally) {
 
+            Text(
+                text = "Update Grower Information",
+                color = Color.Red,
+                fontSize = 30.sp,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(20.dp)
+            )
+        }
+
+        Spacer(modifier = Modifier.height(20.dp))
+
+
+        var growerName by remember { mutableStateOf("") }
+        var growerNumber by remember { mutableStateOf("") }
+        var growerId by remember { mutableStateOf("") }
+        var phoneNumber by remember { mutableStateOf("") }
+        var numberofBushes by remember { mutableStateOf("") }
+        var area by remember { mutableStateOf("") }
         var currentDataRef = FirebaseDatabase.getInstance().getReference().child("Growers/$id")
 
-        currentDataRef.addValueEventListener(object:ValueEventListener{
+        var displayState by remember {
+            mutableStateOf(0)
+        }
+
+        currentDataRef.addListenerForSingleValueEvent(object: ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 var grower = snapshot.getValue(Grower::class.java)
-                name = grower!!.name
-                gnumber = grower!!.gnumber
-                idnumber = grower!!.idnumber
-                phone = grower!!.phone
-                bushes = grower!!.bushes
-                garea = grower!!.garea
+
+                if (displayState<1){
+                    displayState++
+                    growerName = grower!!.name
+                    growerNumber = grower!!.gnumber
+                    growerId = grower!!.idnumber
+                    phoneNumber = grower!!.phone
+                    numberofBushes = grower!!.bushes
+                    area = grower!!.garea
+                    Log.d("fetch_display_state", "onDataChange: "+displayState)
+                }else{
+                    displayState+=10
+                }
+
+
             }
 
             override fun onCancelled(error: DatabaseError) {
                 Toast.makeText(context, error.message, Toast.LENGTH_SHORT).show()
             }
         })
-
-
-
-        Text(
-            text = "Update Grower Information",
-            fontSize = 30.sp,
-            color = Color.Green,
-            modifier = Modifier.padding(20.dp),
-            fontWeight = FontWeight.Bold,
-            textDecoration = TextDecoration.Underline
-        )
-
-        var growerName by remember { mutableStateOf(TextFieldValue("")) }
-        var growerNumber by remember { mutableStateOf(TextFieldValue("")) }
-        var growerId by remember { mutableStateOf(TextFieldValue("")) }
-        var phoneNumber by remember { mutableStateOf(TextFieldValue("")) }
-        var numberofBushes by remember { mutableStateOf(TextFieldValue("")) }
-        var area by remember { mutableStateOf(TextFieldValue("")) }
 
 
 
@@ -109,7 +120,7 @@ fun UpdateGrowerScreen(navController: NavHostController,id:String) {
             onValueChange = {
                 growerNumber = it
             },
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number)
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Text)
         )
 
         Spacer(modifier = Modifier.height(20.dp))
@@ -161,8 +172,8 @@ fun UpdateGrowerScreen(navController: NavHostController,id:String) {
         Button(onClick = {
 //            Write the update logic here
             var growerRepository = GrowerRepository(navController, context)
-            growerRepository.updateGrower(growerName.text.trim(), growerNumber.text.trim(),
-                growerId.text.trim(),phoneNumber.text.trim(),numberofBushes.text.trim(),area.text.trim(),id)
+            growerRepository.updateGrower(growerName.trim(), growerNumber.trim(),
+                growerId.trim(),phoneNumber.trim(),numberofBushes.trim(),area.trim(),id)
 
         }, colors = ButtonDefaults.buttonColors(Color.DarkGray)) {
             Text(text = "Update")
