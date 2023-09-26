@@ -131,7 +131,7 @@ fun GrowerItem(
                     .padding(top = 16.dp),
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
-                Button(colors = ButtonDefaults.buttonColors(Color.DarkGray),
+                Button(colors = ButtonDefaults.buttonColors(Color.Black),
                     onClick = {
                         navController.navigate(ROUTE_UPDATE_GROWER + "/$id")
                     }
@@ -140,7 +140,7 @@ fun GrowerItem(
                     Text(text = "Update",color = Color.Yellow)
                 }
 
-                Button(colors = ButtonDefaults.buttonColors(Color.DarkGray),
+                Button(colors = ButtonDefaults.buttonColors(Color.Black),
                     onClick = {
                         growerRepository.deleteGrower(id)
                     }

@@ -45,7 +45,7 @@ fun HomeScreen(navController: NavHostController) {
 
             Text(
                 text = "Tea Farm Inspection App",
-                color = Color.Black,
+                color = Color.Black ,
                 fontSize = 30.sp,
                 fontWeight = FontWeight.Bold,
                 modifier = Modifier.padding(20.dp)
@@ -69,7 +69,8 @@ fun HomeScreen(navController: NavHostController) {
         Card(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(10.dp),
+                .padding(10.dp)
+                ,
 
 
         ) {
@@ -151,7 +152,7 @@ fun HomeScreen(navController: NavHostController) {
                     },
                     modifier = Modifier.height(45.dp).width(170.dp),
                     shape = CircleShape,
-                    colors = ButtonDefaults.buttonColors(Color.Green)
+                    colors = ButtonDefaults.buttonColors(Color.Yellow)
                 ) {
                     Text(
                         text = "Register Grower",
@@ -168,7 +169,7 @@ fun HomeScreen(navController: NavHostController) {
                     },
                     modifier = Modifier.height(45.dp).width(170.dp),
                     shape =CircleShape,
-                    colors = ButtonDefaults.buttonColors(Color.Green)
+                    colors = ButtonDefaults.buttonColors(Color.Yellow)
                 ) {
                     Text(
                         text = "Grower Details",
@@ -180,125 +181,6 @@ fun HomeScreen(navController: NavHostController) {
 
             }
 
-
-
-//     end of text
-
-
-//        Row(
-//            modifier = Modifier
-//                .fillMaxWidth(),
-//            horizontalArrangement = Arrangement.Center
-//        ) {
-//            Button(
-//                onClick = {
-//                    navController.navigate(ROUTE_ADD_GROWER)
-//                },
-//                modifier = Modifier.height(200.dp).width(150.dp),
-//                shape = RectangleShape,
-//                colors = ButtonDefaults.buttonColors(Color.Green)
-//            ) {
-//                Text(
-//                    text = "Register Grower",
-//                    color = Color.Black,
-//                    fontSize = 25.sp,
-//                    fontWeight = FontWeight.Bold
-//                )
-//            }
-//            Spacer(modifier = Modifier.width(50.dp))
-//
-//            Button(
-//                onClick = {
-//                    navController.navigate(ROUTE_UPDATE_GROWER)
-//                },
-//                modifier = Modifier.height(200.dp).width(150.dp),
-//                shape = RectangleShape
-//            ) {
-//                Text(
-//                    text = "Update Grower",
-//                    color = Color.Yellow,
-//                    fontSize = 25.sp,
-//                    fontWeight = FontWeight.Bold
-//                )
-//            }
-//
-//        }
-//
-//        Spacer(modifier = Modifier.height(20.dp))
-//
-//        Row(
-//            modifier = Modifier
-//                .fillMaxWidth(),
-//            horizontalArrangement = Arrangement.Center
-//        ) {
-//            Button(
-//                onClick = {
-//                    navController.navigate(ROUTE_GROWER_DETAILS)
-//                },
-//                modifier = Modifier.height(180.dp).width(150.dp),
-//                shape = RectangleShape
-//            ) {
-//                Text(
-//                    text = "Grower Details",
-//                    color = Color.Yellow,
-//                    fontSize = 25.sp,
-//                    fontWeight = FontWeight.Bold
-//                )
-//            }
-//            Spacer(modifier = Modifier.width(50.dp))
-//
-//            Button(
-//                onClick = { /*TODO*/ },
-//                modifier = Modifier.height(180.dp).width(150.dp),
-//                shape = RectangleShape,
-//            ) {
-//                Text(
-//                    text = "Update Grower",
-//                    color = Color.Yellow,
-//                    fontSize = 25.sp,
-//                    fontWeight = FontWeight.Bold,
-//                )
-//            }
-//
-//        }
-//
-//        Spacer(modifier = Modifier.height(20.dp))
-
-//        Row(
-//            modifier = Modifier
-//                .fillMaxWidth(),
-//            horizontalArrangement = Arrangement.Center
-//        ) {
-//            Button(
-//                onClick = { /*TODO*/ },
-//                modifier = Modifier.height(180.dp).width(150.dp),
-//                shape = RectangleShape,
-//                colors = ButtonDefaults.buttonColors(Color.LightGray)
-//            ) {
-//                Text(
-//                    text = "Register Grower",
-//                    color = Color.Yellow,
-//                    fontSize = 20.sp,
-//                    fontWeight = FontWeight.Bold
-//                )
-//            }
-//            Spacer(modifier = Modifier.width(50.dp))
-//
-//            Button(
-//                onClick = { /*TODO*/ },
-//                modifier = Modifier.height(180.dp).width(150.dp),
-//                shape = RectangleShape,
-//                colors = ButtonDefaults.buttonColors(Color.DarkGray)
-//            ) {
-//                Text(
-//                    text = "Update Grower",
-//                    color = Color.Yellow,
-//                    fontSize = 20.sp,
-//                    fontWeight = FontWeight.Bold
-//                )
-//            }
-//
-//        }
 
     }
 }
